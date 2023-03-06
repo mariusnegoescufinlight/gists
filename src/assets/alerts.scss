@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin color($theme) {
+    // Get the color config from the theme.
+    $color-config: mat.get-color-config($theme);
+
+    $warn-palette: map.get($color-config, 'warn');
+    $info-palette: mat.$cyan-palette;
+
+    .alert{
+        &.error {
+            color: mat.get-color-from-palette($warn-palette, 900);
+        }
+        &.info{
+            color: mat.get-color-from-palette($info-palette, 900);
+        }
+    }
+}
+@mixin background-color($theme) {
+    // Get the color config from the theme.
+    $color-config: mat.get-color-config($theme);
+
+    $warn-palette: map.get($color-config, 'warn');
+    $info-palette: mat.$cyan-palette;
+
+    .alert{
+        &.error {
+            background-color: mat.get-color-from-palette($warn-palette, 100);
+        }
+        &.info {
+            background-color: mat.get-color-from-palette($info-palette, 100);
+        }
+    }
+}
+
+@mixin border($theme) {
+    // Get the color config from the theme.
+    $color-config: mat.get-color-config($theme);
+
+    $warn-palette: map.get($color-config, 'warn');
+    $info-palette: mat.$cyan-palette;
+
+    .alert{
+        &.error {
+            border: 1px solid mat.get-color-from-palette($warn-palette, 800);
+        }
+        &.info {
+            border: 1px solid mat.get-color-from-palette($info-palette, 800);
+        }
+    }
+}
+
+@mixin typography($theme) {
+    // Get the color config from the theme.
+    $color-config: mat.get-color-config($theme);
+
+    // Get the primary color palette from the color-config.
+    $warn-palette: map.get($color-config, 'warn');
+
+    .alert{
+        padding: 10px;
+        border-radius: 4px;
+    }
+}
+
+@mixin theme($theme) {
+    $color-config: mat.get-color-config($theme);
+    @if $color-config != null {
+        @include typography($theme);
+        @include color($theme);
+        @include background-color($theme);
+        @include border($theme);
+    }
+}

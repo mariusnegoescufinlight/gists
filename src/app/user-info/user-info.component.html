@@ -1,0 +1,12 @@
+<ng-container *ngIf="(user$ | async) as user; else userNotSelected">
+    <div class="user-details-info">
+        <img *ngIf="user.avatar_url" src="{{user.avatar_url}}" alt="{{user.name}}" />
+        <div class="user-details-info-name">{{user.name ? user.name: user.login}}</div>
+        <div class="user-details-info-bio">{{user.bio}}</div>
+    </div>
+</ng-container>
+<ng-template #userNotSelected>
+    <div class="alert info">
+        Type in a username to get info
+    </div>
+</ng-template>

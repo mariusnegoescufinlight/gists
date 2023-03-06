@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+
+.user-details-info{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    img{
+        border-radius: 50%;
+        width: 100%;
+    }
+
+    &-name{
+        padding: .5rem 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &-description{
+        font-size: 1rem;
+        color: mat.get-color-from-palette(mat.$gray-palette, 100);
+    }
+}

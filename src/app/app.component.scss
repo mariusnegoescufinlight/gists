@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+.app-wrapper{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .mat-mdc-form-field{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .user-details{
+        display: flex;
+        flex-wrap: nowrap;
+
+        & > * {
+            flex: 1 1 auto;
+        }
+        app-user-info{
+            flex: 0 0 25%;
+            padding-right: 10px;
+        }
+        app-user-gists{
+            flex: 0 0 75%;
+            padding-left: 10px;
+        }
+    }
+}

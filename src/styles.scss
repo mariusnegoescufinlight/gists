@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use './src/assets/alerts' as alerts;
+
+$primary-palette: mat.define-palette(mat.$blue-palette, 500);
+$accent-palette: mat.define-palette(mat.$indigo-palette, A200, A100, A400);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+$gist-theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($gist-theme);
+@include alerts.theme($gist-theme);

@@ -1,0 +1,60 @@
+<ng-container *ngIf="(gists$ | async) as gists; else noUserSelected">
+    <ng-container *ngIf="gists.length > 0; else noGistsFound">
+        <mat-accordion class="gist-accordion" multi>
+            <ng-container *ngFor="let gist of gists; trackBy: trackByFn">
+                <ng-container *ngIf="gist.files.length > 0">
+                    <ng-container *ngFor="let file of gist.files; index as i; trackBy: trackByFn">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header (click)="showGistDetails(gist)">
+                                <mat-panel-title>
+                                    {{file.filename}}
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <div>
+                                        {{gist.created_at|date: 'dd-MM-yyyy'}}
+                                    </div>
+                                    <div class="gists-details-item-badge {{'badge-' + file.badge}}">
+                                        {{file.language}}
+                                    </div>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <ng-container *ngIf="forks[gist.id]">
+                                <mat-card class="mat-elevation-z2 mat-card-fork">
+                                    <mat-card-header>
+                                        <mat-card-title>Forks</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <div class="mat-card-fork-item" *ngFor="let fork of forks[gist.id]; trackBy: trackByFn">
+                                            <img *ngIf="fork.user.avatar_url" src="{{fork.user.avatar_url}}" alt="{{fork.user.name}}" />
+                                            <div class="name">{{fork.user.name ? fork.user.name: fork.user.login}}</div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </ng-container>
+                            <ng-container *ngIf="code[gist.id]">
+                                <mat-card class="mat-elevation-z4 mat-card-code">
+                                    <mat-card-header>
+                                        <mat-card-title>Code</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <p [innerHTML]="getGistRawCode(code[gist.id][i])"></p>
+                                    </mat-card-content>
+                                </mat-card>
+                            </ng-container>
+                        </mat-expansion-panel>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </mat-accordion>
+    </ng-container>
+    <ng-template #noGistsFound>
+        <div class="alert error">
+            No gists found for user
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #noUserSelected>
+    <div class="alert info">
+        Type in a username to get gists
+    </div>
+</ng-template>

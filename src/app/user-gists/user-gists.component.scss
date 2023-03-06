@@ -1,0 +1,105 @@
+@use '@angular/material' as mat;
+.gists-details {
+    &-item {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        &-badge {
+            min-width: 50px;
+            border-radius: 10px;
+            padding: 5px;
+            text-align: center;
+            margin-left: 10px;
+
+            &.badge-0{
+                background-color: mat.get-color-from-palette(mat.$lime-palette, 500);
+                color: #fff;
+            }
+            &.badge-1{
+                background-color: mat.get-color-from-palette(mat.$red-palette, 500);
+                color: #fff;
+            }
+            &.badge-2{
+                background-color: mat.get-color-from-palette(mat.$pink-palette, 500);
+                color: #fff;
+            }
+            &.badge-3{
+                background-color: mat.get-color-from-palette(mat.$purple-palette, 500);
+                color: #fff;
+            }
+            &.badge-4{
+                background-color: mat.get-color-from-palette(mat.$deep-purple-palette, 500);
+                color: #fff;
+            }
+            &.badge-5{
+                background-color: mat.get-color-from-palette(mat.$indigo-palette, 500);
+                color: #fff;
+            }
+            &.badge-6{
+                background-color: mat.get-color-from-palette(mat.$blue-palette, 500);
+                color: #fff;
+            }
+            &.badge-7{
+                background-color: mat.get-color-from-palette(mat.$light-blue-palette, 500);
+                color: #fff;
+            }
+            &.badge-8{
+                background-color: mat.get-color-from-palette(mat.$cyan-palette, 500);
+                color: #fff;
+            }
+            &.badge-9{
+                background-color: mat.get-color-from-palette(mat.$teal-palette, 500);
+                color: #fff;
+            }
+            &.badge-10{
+                background-color: mat.get-color-from-palette(mat.$green-palette, 500);
+                color: #fff;
+            }
+        }
+    }
+}
+.gist-accordion{
+    .mat-expansion-panel-header-description{
+        justify-content: flex-end;
+    }
+
+    mat-expansion-panel{
+        .mat-card-code{
+            mat-card-content {
+                background-color: mat.get-color-from-palette(mat.$blue-palette, 500);
+                color: #fff;
+            }
+        }
+        .mat-card-fork{
+            &-item{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                & + .mat-card-fork-item{
+                    margin-top: 1rem;
+                }
+
+                img{
+                    border-radius: 50%;
+                    max-width: 50px;
+                    width: 100%;
+                }
+
+                .name{
+                    font-size: 1.5rem;
+                    padding-left: .5rem;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        mat-card{
+            & + mat-card{
+                margin-top: 2rem;
+            }
+        }
+    }
+}
